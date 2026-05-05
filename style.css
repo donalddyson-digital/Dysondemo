@@ -1705,6 +1705,27 @@ footer{
   box-shadow:none;
   background:var(--dark);
 }
+/* Soft blue brand-colored overlay (sits ABOVE video, BELOW UI) */
+.hero-media::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,
+      rgba(10,20,40,0.55) 0%,
+      rgba(10,20,40,0.35) 30%,
+      rgba(10,20,40,0.18) 60%,
+      rgba(10,20,40,0.05) 100%),
+    linear-gradient(180deg,
+      rgba(10,20,40,0.10) 0%,
+      transparent 35%,
+      rgba(10,20,40,0.20) 100%),
+    radial-gradient(circle at 80% 50%,
+      rgba(79,142,247,0.08),
+      transparent 55%);
+}
 .hero-media .hero-video{
   position:absolute;
   inset:0;
@@ -1715,7 +1736,8 @@ footer{
   display:block;
   border:0;
   outline:none;
-  filter:brightness(1);   /* no dimming — keep video bright/vibrant */
+  filter:brightness(0.95) contrast(1.05);   /* keep video bright + a touch crisper */
+  z-index:0;
 }
 
 /* Reduced-motion fallback */
@@ -1757,6 +1779,19 @@ footer{
     height:65vh;
     max-height:560px;
     min-height:340px;
+  }
+  /* Lighter overlay on mobile — keep video maximally visible */
+  .hero-media::before{
+    background:
+      linear-gradient(90deg,
+        rgba(10,20,40,0.30) 0%,
+        rgba(10,20,40,0.18) 40%,
+        rgba(10,20,40,0.08) 70%,
+        rgba(10,20,40,0.02) 100%),
+      linear-gradient(180deg,
+        rgba(10,20,40,0.05) 0%,
+        transparent 40%,
+        rgba(10,20,40,0.12) 100%);
   }
   .hero .hero-ctas{
     padding:2rem 5%;
